@@ -15,10 +15,10 @@ var GoogleCloudManager = function(filepath, fileSizeInBytes,token) {
 			url:url,
 			type: "POST",
 			headers: {
-				Authorization: "Bearer " + this.getAuthToken(),
-				Content-Type: "application/json; charset=UTF-8",
-				X-Upload-Content-Type: "binary/octet-stream",
-				X-Upload-Content-Length: this.fileSizeInBytes
+				"Authorization": "Bearer " + this.getAuthToken(),
+				"Content-Type": "application/json; charset=UTF-8",
+				"X-Upload-Content-Type": "binary/octet-stream",
+				"X-Upload-Content-Length": this.fileSizeInBytes.toString()
 			},
 			success: function(data, textStatus, request) {
 				var location = request.getResponseHeader('Location');
