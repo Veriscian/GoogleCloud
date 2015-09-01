@@ -31,20 +31,22 @@ var GoogleCloudManager = function(filepath, fileSizeInBytes,token) {
 		$.ajax(payload);		
 	}
 	
-	this.uploadFile(url) {
-		app.use(multer({ 
-			dest: url,
-			rename: function (fieldname, filename) {
-				return filename;
-			},
-			onFileUploadStart: function (file) {
-				console.log(file.originalname + ' is starting ...')
-			},
-			onFileUploadComplete: function (file) {
-				console.log(file.fieldname + ' uploaded to  ' + file.path)
-				done=true;
-			}
-		}));
+	this.uploadFile = function(url) {
+		app.use(
+			multer({ 
+				dest: url,
+				rename: function (fieldname, filename) {
+					return filename;
+				},
+				onFileUploadStart: function (file) {
+					console.log(file.originalname + ' is starting ...')
+				},
+				onFileUploadComplete: function (file) {
+					console.log(file.fieldname + ' uploaded to  ' + file.path)
+					done=true;
+				}
+			})
+		);
 		app.put(this.filepath,function(req,res){
 			if(done==true){
 				console.log(req.files);
